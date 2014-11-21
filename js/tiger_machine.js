@@ -16,7 +16,6 @@ var TigerMachine = function(){
         this.money = 100;
     }
     this.setMoney(1);
-    this.money = 100;
     this.bet = 0;
     this.underMoving = false;
     
@@ -74,7 +73,7 @@ TigerMachine.prototype = {
         
     },
     putMoney:function(num){
-        this.bet+=num;
+        this.bet += num;
         this.setMoney(num*-1);  //扣钱
         this.showTip("你投了"+this.bet+"块钱");
     },
