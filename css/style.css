@@ -1,0 +1,172 @@
+@charset "utf-8";
+/* CSS Document */
+
+.header{
+    padding:10px;
+    font-family: Microsoft yahei;
+    font-size: 20px;
+    text-align: center;
+    line-height: 32px;
+}
+
+.machine{
+    font-family: Microsoft yahei;
+    width:100%;
+    min-height: 100vw;
+    padding:10px;
+    box-sizing:border-box;
+    box-shadow:rgba(0,0,0,.5) 1px 5px 8px;
+    border:5px solid #d9d725;
+    border-radius:10px;
+    overflow: hidden;
+    background: #be321f;
+    background: -webkit-linear-gradient(top,#da6656 0,#c53e2c 50%,#be321f 100%);
+    background: -moz-linear-gradient(top,#da6656 0,#c53e2c 50%,#be321f 100%);
+    background: -ms-linear-gradient(top,#da6656 0,#c53e2c 50%,#be321f 100%);
+}
+
+
+.machine_tip{
+    color: #fff;
+    font-size: 22px;
+    line-height: 30px;
+    height:60px;
+    padding:10px;
+    text-align: center;
+}
+
+.machine_screen{
+    position: relative;
+    width: 100%;
+    height:30vw;
+    border-radius:3px;
+    overflow: hidden;
+    background:#fff;
+}
+.machine_screen .col{
+    float:left;
+    width:33.3%;
+    height:100%;
+    overflow: hidden;
+}
+.machine_screen .col li{
+    display: block;
+    height:30vw;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+
+.machine_screen .col li.li_01{
+    background-image: url(../images/ico_01.png);
+    background-color: #007c7c;
+}
+.machine_screen .col li.li_02{
+    background-image: url(../images/ico_02.png);
+    background-color: #5914a7;
+}
+.machine_screen .col li.li_03{
+    background-image: url(../images/ico_03.png);
+    background-color: #12648f;
+}
+.machine_screen .col li.li_04{
+    background-image: url(../images/ico_04.png);
+    background-color: #1e810b;
+}
+.machine_screen .col li.li_05{
+    background-image: url(../images/ico_05.png);
+    background-color: #5914a7;
+}
+.machine_screen .col li.li_06{
+    background-image: url(../images/ico_06.png);
+    background-color: #333232;
+}
+.machine_screen .col li.li_07{
+    background-image: url(../images/ico_07.png);
+    background-color: #99083e;
+}
+.machine_screen .col li.li_08{
+    background-image: url(../images/ico_08.png);
+    background-color: #724604;
+}
+.machine_screen .col li.li_09{
+    background-image: url(../images/ico_09.png);
+    background-color: #e1dfdf;
+}
+.machine_screen .col li.li_10{
+    background-image: url(../images/ico_10.png);
+    background-color: #aefff3;
+}
+
+
+.tools{
+    float:right;
+    position: relative;
+    width:60px;
+    height: 120px;
+}
+.tools .bg{
+    position: absolute;
+    top:40px;
+    width:10px;
+    height:80px;
+    border:1px solid #999;
+    border-radius:5px;
+    background: #000;
+}
+.tools .pole{
+    top:45px;
+    width: 40px;
+    height: 8px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    background: -webkit-linear-gradient(top,#bebaba 0,#e3e3e3 50%,#9f9f9f 100%);
+    background: -moz-linear-gradient(top,#bebaba 0,#e3e3e3 50%,#9f9f9f 100%);
+    background: -ms-linear-gradient(top,#bebaba 0,#e3e3e3 50%,#9f9f9f 100%);
+    position: absolute;
+    z-index: 2;
+    -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    transform:rotate(-45deg);
+    transform-origin: 0% 0%;
+    transition: transform .3s ease-out 0;
+}
+.tools .pole:after{
+    position: absolute;
+    top:-5px;
+    left:35px;
+    content:"";
+    width:16px;
+    height: 16px;
+    border:1px solid #333;
+    border-radius:9px;
+	background: -moz-radial-gradient( #797575, #000000);
+	background: -webkit-radial-gradient( #797575, #000000);
+	background: -o-radial-gradient(#797575, #000000);
+}
+.tools.active .pole{
+    transform:translate(0,65px);
+}
+
+.your_money{
+    float: left;
+    width:120px;
+    margin-top:50px;
+    padding:10px;
+    border-radius:10px;
+    box-shadow:2px 3px 3px rgba(0,0,0,.3) inset;
+    background:#d69f1a;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    line-height: 26px;
+}
+.btn_put_coins{
+    clear:both;
+    float:left;
+    width:140px;
+    margin-top: 5px;
+}
+
+
