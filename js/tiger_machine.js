@@ -6,9 +6,9 @@ var TigerMachine = function(){
     this.$Money = $("#your_money");
     this.itemHeight = this.$Scrollers.find("li").outerHeight();
     this.wholeHeight = this.itemHeight*10;
-    this.roller = [new RollingCard(this.$Scrollers.eq(0),50,2,1,this.itemHeight, this.wholeHeight,0),
-                   new RollingCard(this.$Scrollers.eq(1),60,2,1,this.itemHeight, this.wholeHeight,1), 
-                   new RollingCard(this.$Scrollers.eq(2),70,2,1,this.itemHeight, this.wholeHeight,2)
+    this.roller = [new RollingCard(this.$Scrollers.eq(0),50,4,3,this.itemHeight, this.wholeHeight,0),
+                   new RollingCard(this.$Scrollers.eq(1),60,4,2,this.itemHeight, this.wholeHeight,1), 
+                   new RollingCard(this.$Scrollers.eq(2),70,4,1,this.itemHeight, this.wholeHeight,2)
                   ];
     this.isRollUp = false;
     this.money = parseInt(localStorage.getItem("money"));
@@ -17,7 +17,7 @@ var TigerMachine = function(){
     }
     this.setMoney(1);
     this.money = 100;
-    this.bet = 1;
+    this.bet = 0;
     this.underMoving = false;
     
 };
@@ -27,7 +27,10 @@ TigerMachine.prototype = {
         if(this.underMoving){
             return;
         }
-        this.setMoney(-1);
+        if(this.bet ==0){
+            this.showTip('请先投币！');
+            return;
+        }
         this.isRollUp = true;
         this.roller[0].start();
         this.underMoving = true;
@@ -55,22 +58,25 @@ TigerMachine.prototype = {
         //alert(val.length);
         //val.length 表示了不同数值的个数。
         if(val.length ==3){
-            this.showTip("you lose!");
+            this.showTip("你输了!");
         }else if(val.length==2){
-            this.showTip("you win triple!");
+            this.showTip("你赢了三倍的赌注!");
             this.setMoney(3*this.bet);
         }else{
-            this.showTip("you win Ten Time of your bet!");
+            this.showTip("你赢了十倍的赌注！!");
             this.setMoney(10*this.bet);
         }
         this.underMoving = false;
+        this.bet = 0;
         
     },
     getMoney:function(){
         
     },
-    putMoney:function(){
-        
+    putMoney:function(num){
+        this.bet+=num;
+        this.setMoney(num*-1);  //扣钱
+        this.showTip("你投了"+this.bet+"块钱");
     },
     showTip:function(txt){
         txt = txt.toLocaleUpperCase();
