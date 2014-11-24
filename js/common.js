@@ -11,102 +11,58 @@ function goTop(){
 }
 
 
-function myMarquee(_id,_mode,_speed,_w,_h)
-{	
-	var ID=_id;
-	var mode=_mode; 
-	var speed=_speed*100;
-	var txt=$('#'+_id).html();
-	var width=_w;
-	var height=_h;
-	var lineHeight = 24;
-	var finalTop=0;
-	var index = 0;
-	var marginBottom = 0;
-	
-	var handle;
-	var s='<div id="'+_id+'_content" style="overflow: hidden;height:'+_h+'px;width:'+_w+'px;"><div id="'+_id+'_show" >'+txt+'</div><div id="'+_id+'_hide"></div></div>'
-	$('#'+_id).html(s);	
-	var list_show = $('#'+ID+'_show')[0];
-	var list_hide = $('#'+ID+'_hide')[0];
-	var list_content = $('#'+ID+'_content')[0];
-	var lis = $(list_show).find('li');
-	
-	function doing()
-	{
-	    //  alert(ID)
-		  switch(mode) {
-		   case 't':
-		   	if(lis.length>index){
-				lineHeight = lis[index].offsetHeight + marginBottom;
-				index++;
-			}else if(lis.length>0){
-				index = 0;
-				lineHeight = lis[index].offsetHeight + marginBottom;
-				index++;
-			}
-			if(list_hide.offsetTop-list_content.scrollTop<=0){
-			 	finalTop = finalTop - list_show.offsetHeight;
-			 	list_content.scrollTop = finalTop;
-			 	finalTop = parseInt(finalTop)+parseInt(lineHeight);
-			}else{
-				finalTop = parseInt(finalTop)+parseInt(lineHeight);
-			}
-			setTimeout(slide,40);
-			break;
-		   case 'b':
-			if(list_show.offsetTop-list_content.scrollTop>=0){
-				list_content.scrollTop+=list_hide.offsetHeight
-			}else{
-			 	list_content.scrollTop-=lineHeight;
-			}
-			break;
-		  }
-	 }
-	 var slide = function(){
-		 var moveDis = parseInt((finalTop-parseInt(list_content.scrollTop))/2);
-		 if(moveDis<1){
-			list_content.scrollTop = finalTop;
+function itemsCalc(){
+	var items = $(".needcalc");
+	var clientWidth = document.documentElement.clientWidth;
+	var cur, width, height, top, bottom, left, right, widthpercent, heightpercent, toppercent, bottompercent, leftpercent, rightpercent;
+	for(var i=0; i<items.length; i++){
+		cur = items.eq(i);
+		width = Math.round(clientWidth*parseFloat(cur.attr("widthpercent")));
+		height = Math.round(clientWidth*parseFloat(cur.attr("heightpercent")));
+		
+		widthpercent = cur.attr("widthpercent");
+		if(typeof widthpercent !="undefined"){
+			width = Math.round(parseFloat(widthpercent)*clientWidth)+"px";
 		}else{
-			list_content.scrollTop = parseInt(list_content.scrollTop) + moveDis;
-			setTimeout(slide, 40);
+			width = false;
 		}
 		
-		
-		
-	}
-	 var run = function(){
-		list_content.scrollTop = 0;
-		list_hide.innerHTML=list_show.innerHTML;
-		//var temp='mymarquee'+ID+'=setInterval(\'doing("'+mode+'","'+ID+'")\','+speed+')'	
-		handle = setInterval(doing,speed);
-
-		var _id=ID;
-		var _mode=mode;
-		var _speed=speed;
-		$("#"+ID+" ul").css('float','left');
-		$(list_hide).css('clear','both');
-		$(list_show).css('overflow','hidden');
-		if(lis.length>0){
-			if($.browser.msie){
-				marginBottom = parseInt(lis[0].currentStyle.marginBottom);
-			}else{
-				marginBottom = parseInt(document.defaultView.getComputedStyle(lis[0],null).marginBottom);
-			}
+		heightpercent = cur.attr("heightpercent");
+		if(typeof heightpercent !="undefined"){
+			height = Math.round(parseFloat(heightpercent)*clientWidth)+"px";
+		}else{
+			height = false;
 		}
-		list_content.onmouseover=function() 
-			{
-				clearInterval(handle);
-				handle = "";
-			}		
-		list_content.onmouseout=function() 
-			{
-				if(handle==""){
-					handle = setInterval(doing,speed);
-				}
-			}
+		
+		toppercent = cur.attr("toppercent");
+		if(typeof toppercent !="undefined"){
+			top = Math.round(parseFloat(toppercent)*clientWidth)+"px";
+		}else{
+			top = false;
+		}
+		
+		bottompercent = cur.attr("bottompercent");
+		if(typeof bottompercent !="undefined"){
+			bottom = Math.round(parseFloat(bottompercent)*clientWidth)+"px";
+		}else{
+			bottom = false;
+		}
+		
+		leftpercent = cur.attr("leftpercent");
+		if(typeof leftpercent !="undefined"){
+			left = Math.round(parseFloat(leftpercent)*clientWidth)+"px";
+		}else{
+			left = false;
+		}
+		
+		rightpercent = cur.attr("rightpercent");
+		if(typeof rightpercent !="undefined"){
+			right = Math.round(parseFloat(rightpercent)*clientWidth)+"px";
+		}else{
+			right = false;
+		}
+		cur.css({width:width, height:height, left:left, right:right,top:top,bottom:bottom});
 	}
-	run();
 }
 
 /*页面弹层的JS*/
